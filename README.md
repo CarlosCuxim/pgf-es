@@ -1,34 +1,46 @@
-# pgf – A Portable Graphic Format for TeX
+# pgf-es - Una traducción al español del manual de pgf/TikZ
+
+## Notas de traducción.
+
+Esta es una traducción no oficial de manual de TikZ, por lo mismo puede (y 
+probablemente haya) errores de traducción. Haré todo lo posible por que eso no
+sea así. También, por motivos de tropicalización, es posible que algunos
+términos o frases no estén traducidos de manera literal.
+
+Es un proyecto personal, por lo que el resultado está en proceso y puede que
+nunca esté acabado (esperemos que no).
+
+# pgf – Un Formato Gráfico Portable para TeX
 
 ![Test suite](https://github.com/pgf-tikz/pgf/actions/workflows/check.yml/badge.svg?branch=master)
 
-PGF is a TeX macro package for generating graphics. It is platform-
-and format-independent and works together with the most important TeX
-backend drivers, including `pdftex` and `dvips`. It comes with a
-user-friendly syntax layer called Ti*k*Z.
+PGF es un paquete de macros de TeX para generar gráficos. Es independiente de la
+plataforma y el formato y funciona con los controladores de backend de TeX más 
+importantes, incluyendo `pdftex` y `dvips`. Además, viene con una capa de
+sintaxis user-friendly llamada Ti*k*Z.
 
-See the directory `doc/generic/pgf` for more information. See the file
-`doc/generic/pgf/pgfmanual.pdf` (also available from 
-https://pgf-tikz.github.io/pgf/pgfmanual.pdf) for a manual. This
-documentation also explains the installation.  See the file
-`doc/generic/pgf/license/LICENSE` for license details.
+Puedes consultar el directorio `doc/generic/pgf` para más información. También
+puedes  consultar el archivo `doc/generic/pgf/pgfmanual.pdf` (también disponible
+en inglés, desde https://pgf-tikz.github.io/pgf/pgfmanual.pdf) para un manual.
+Esta documentación también explica la instalación. Finalmente, puedes mirar el
+archivo `doc/generic/pgf/license/LICENSE` para los detalles de la licencia.
 
-Please go to the official repository at https://github.com/pgf-tikz/pgf or the
-official mailing list at https://tug.org/mailman/listinfo/pgf-tikz to submit
-bug reports, request new features, etc.
+Por favor, visite el repositorio oficial en https://github.com/pgf-tikz/pgf o la
+lista de correo en https://tug.org/mailman/listinfo/pgf-tikz para enviar
+reportes de errores, solicitar nuevas características, etc.
 
-We also have a chat on the Matrix network at
-[#pgf-tikz:matrix.org](https://matrix.to/#/#pgf-tikz:matrix.org) ([read-only
-version](https://view.matrix.org/room/!NuxCISwYQJuyWwNsEI:matrix.org/)).
+También tenemos un chat en la red de Matrix en
+[#pgf-tikz:matrix.org](https://matrix.to/#/#pgf-tikz:matrix.org)
+([versión de solo lectura](https://view.matrix.org/room/!NuxCISwYQJuyWwNsEI:matrix.org/)).
 
-## Installation
+## Instalación
 
-In general you should just use the version of PGF that is shipped by
-your TeX distribution.  See their documentation on how to install
-packages.
+En general deberías simplemente usar la versión de PGF que está incluida en tu
+distribución de TeX. Consulte su documentación para saber como instalar
+paquetes.
 
-If you are feeling adventurous you can install the latest development
-version in TeX Live from our tlcontrib repository.
+Si te sientes aventurero también puedes instalar la última versión de desarrollo
+en TeX Live desde nuestro repositorio de tlcontrib.
 ```console
 $ tlmgr repository add http://pgf-tikz.github.io/pgf/tlnet pgf-development
 $ tlmgr pinning add pgf-development "*"
@@ -36,14 +48,12 @@ $ tlmgr update --self --all
 $ tlmgr install pgf --reinstall
 ```
 
-## Development
-
-Currently PGF only has a very rudimentary test suite to check for
-regressions, so for now we check for bugs by building the manual for
-each commit.  To build the manual locally you can either copy the PGF
-repository into your texmf tree (not recommended) or use the usertree
-option of TeX Live.  For the usertree option on GNU/Linux, follow
-these steps:
+## Desarrollo
+Actualmente, PGF solo cuenta con un conjunto de pruebas muy rudimentario para
+detectar regresiones, por lo que, por ahora, buscamos errores compilando el
+manual para cada commit. Para compilar el manual localmente, puedes copiar el repositorio de PGF en tu árbol de texmf (no recomendado) o usar la opción
+usertree de TeX Live. Para usar la opción usertree en GNU/Linux, siga estos
+pasos:
 ```console
 $ git clone https://github.com/pgf-tikz/pgf
 $ tlmgr init-usertree --usertree pgf
@@ -51,7 +61,6 @@ $ export TEXMFHOME=$(readlink -f pgf)
 $ cd pgf
 $ l3build doc -q -H
 ```
-We recommend building at least the version for LuaTeX, as shown in the
-example above because this has the broadest coverage of PGF features.
-To test the animations feature you have to build the version for
-dvisvgm.
+Recomendamos compilar al menos la versión para LuaTeX, como se muestra en el
+ejemplo anterior, ya que ofrece la cobertura más amplia de las funciones de PGF.
+Para probar la función de animaciones, debes compilar la versión para dvisvgm.

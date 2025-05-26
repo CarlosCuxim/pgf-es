@@ -12,3 +12,4 @@
 *.zip
 
 build/*
+.vscode/
