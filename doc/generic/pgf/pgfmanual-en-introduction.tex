@@ -8,42 +8,49 @@
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
 
-\section{Introduction}
+\section{Introducción}
 
-Welcome to the documentation of \tikzname\ and the underlying \pgfname\ system.
-What began as a small \LaTeX\ style for creating the graphics in my (Till
-Tantau's) PhD thesis directly with pdf\LaTeX\ has now grown to become a
-full-blown graphics language with a manual of over a thousand pages. The wealth
-of options offered by \tikzname\ is often daunting to beginners; but
-fortunately this documentation comes with a number of slowly-paced tutorials that
-will teach you almost all you should know about \tikzname\ without your having
-to read the rest.
+Bienvenido a la documentación de \tikzname\ y el sistema subyacente \pgfname. Lo
+que empezó como un pequeño estilo de \LaTeX\ para crear los gráficos
+de mi (Till Tantau) tesis de doctorado directamente con pdf\LaTeX\ se ha
+convertido en un lenguaje para la creación de gráficos completo, con un manual
+de más de míl páginas. La gran cantidad de opciones que ofrece \tikzname\
+suele ser abrumadora para los principiantes; pero, afortunadamente, esta
+documentación viene con varios tutoriales detallados que te enseñarán casi
+todo lo que deberías saber para usar \tikzname\, sin que tengas que leer el
+resto. 
 
-I wish to start with the question ``What is \tikzname?'' Basically, it just
-defines a number of \TeX\ commands that draw graphics. For example, the code
-|\tikz \draw (0pt,0pt) -- (20pt,6pt);| yields the line \tikz \draw (0pt,0pt) --
-(20pt,6pt); and the code |\tikz \fill[orange] (1ex,1ex) circle (1ex);| yields
-\tikz \fill[orange] (1ex,1ex) circle (1ex);. In a sense, when you use
-\tikzname\ you ``program'' your graphics, just as you ``program'' your document
-when you use \TeX. This also explains the name: \tikzname\ is a recursive
-acronym in the tradition of ``\textsc{gnu}'s Not Unix'' and means ``\tikzname\
-ist \emph{kein} Zeichenprogramm'', which translates to ``\tikzname\ is not a
-drawing program'', cautioning the reader as to what to expect. With \tikzname\
-you get all the advantages of the ``\TeX-approach to typesetting'' for your
-graphics: quick creation of simple graphics, precise positioning, the use of
-macros, often superior typography. You also inherit all the disadvantages:
-steep learning curve, no \textsc{wysiwyg}, small changes require a long
-recompilation time, and the code does not really ``show'' how things will look
-like.
+Me gustaría inicial con la pregunta de ``¿Qué es \tikzname?'' Básicamente, es
+solo un conjunto de comandos de \TeX\ que dibujan figuras. Por ejemplo, el
+código |\tikz \draw (0pt,0pt) -- (20pt,6pt);| dibuja la línea \tikz \draw
+(0pt,0pt) -- (20pt,6pt); mientras que el código |\tikz \fill[orange] (1ex,1ex) circle (1ex);|
+dibuja \tikz \fill[orange] (1ex,1ex) circle (1ex);. En cierto sentido, cuando
+usas \tikzname\ lo que estás haciendo es que ``programas'' tu gráfico, de la
+misma manera en la que ``programas'' tu documento cuando usas \TeX. Esto también
+explica el nombre: \tikzname es un acrónimo recursivo al estilo de
+``\textsc{gnu}'s Not Unix'' y que significa ``\tikzname\ ist \emph{kein}
+Zeichenprogramm'', que se traduce como ``\tikzname\ no es un programa de
+dibujo'', advirtiendo al lector sobre lo que debe esperar. Con \tikzname\ 
+obtendrás todas las ventajas del ``Enfoque de composición tipográfica de \TeX''
+para tus gráficos: rápida creación de gráficos simples, posicionamiento preciso,
+el uso de macros, una composición tipográfica usualmente superior. Sin embargo
+también heredando todas sus desventajas: una curva de aprendizaje pronunciada,
+no \textsc{wysiwyg}\footnote{Nota de traducción:\textsc{wysiwyg} se refiere a la
+frase ``what you see is what you get'' que se traduce como ``lo que ves es lo
+que obtienes'' y se refiere a los programas de edición en los cuales el
+redsultado que ves en pantalla es el mismo que el producto final, como MS Word
+o Adobe Photoshop.}, pequeños cambios requieren un largo tiempo de compilación, 
+y que el código no realmente ``muestra'' como las cosas se van a ver. 
 
-Now that we know what \tikzname\ is, what about ``\pgfname''? As mentioned
-earlier, \tikzname\ started out as a project to implement \TeX\ graphics macros
-that can be used both with pdf\LaTeX\ and also with the classical
-(PostScript-based) \LaTeX. In other words, I wanted to implement a ``portable
-graphics format'' for \TeX\ -- hence the name \pgfname. These early macros are
-still around and they form the ``basic layer'' of the system described in this
-manual, but most of the interaction an author has these days is with
-\tikzname\ -- which has become a whole language of its own.
+Ahora que sabemos qué es \tikzname\ ¿que hay acerca de ``\pgfname''? Como se
+mencionó anteriormente,\tikzname\ empezó como un proyecto para implementar
+macros de gráficos de \TeX que pudieran ser usados por pdf\LaTeX y también con
+el clásico \LaTeX (basado en PostScript). En otras palabras, lo que quería era
+implementar un ``portable graphics format'' (sistema de gráficos portable) para
+\TeX\ -- de ahí el nombre de \pgfname. Esos primeros macros están aún ahí y
+forman la ``capa básica'' del sistema descrito en este manual, pero actualmente
+la mayoría de la interacción que un autor tendrá será con \tikzname\ -- el cual
+se ha convertido en un lenguaje completamente propio.
 
 
 \subsection{The Layers Below \tikzname}
