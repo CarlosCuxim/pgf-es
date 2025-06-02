@@ -38,7 +38,7 @@ también heredando todas sus desventajas: una curva de aprendizaje pronunciada,
 no \textsc{wysiwyg}\footnote{Nota de traducción:\textsc{wysiwyg} se refiere a la
 frase ``what you see is what you get'' que se traduce como ``lo que ves es lo
 que obtienes'' y se refiere a los programas de edición en los cuales el
-redsultado que ves en pantalla es el mismo que el producto final, como MS Word
+resultado que ves en pantalla es el mismo que el producto final, como MS Word
 o Adobe Photoshop.}, pequeños cambios requieren un largo tiempo de compilación, 
 y que el código no realmente ``muestra'' como las cosas se van a ver. 
 
@@ -53,83 +53,89 @@ la mayoría de la interacción que un autor tendrá será con \tikzname\ -- el c
 se ha convertido en un lenguaje completamente propio.
 
 
-\subsection{The Layers Below \tikzname}
+\subsection{Las Capas Debajo de \tikzname}
 
-It turns out that there are actually \emph{two} layers below \tikzname:
+Resulta que en realidad hay \emph{dos} capas debajo de \tikzname:
 %
 \begin{description}
-    \item[System layer:] This layer provides a complete abstraction of what
-        is going on ``in the driver''. The driver is a program like |dvips|
-        or |dvipdfm| that takes a |.dvi| file as input and generates a |.ps|
-        or a |.pdf| file. (The |pdftex| program also counts as a driver, even
-        though it does not take a |.dvi| file as input. Never mind.) Each
-        driver has its own syntax for the generation of graphics, causing
-        headaches to everyone who wants to create graphics in a portable way.
-        \pgfname's system layer ``abstracts away'' these differences. For
-        example, the system command |\pgfsys@lineto{10pt}{10pt}| extends the
-        current path  to the coordinate $(10\mathrm{pt},10\mathrm{pt})$ of
-        the current |{pgfpicture}|. Depending on whether |dvips|, |dvipdfm|,
-        or |pdftex| is used to process the document, the system command will
-        be converted to different |\special| commands. The system layer is as
-        ``minimalistic'' as possible since each additional command makes it
-        more work to port \pgfname\ to a new driver.
+    \item[Capa del Sistema:] Esta capa proporciona una abstracción completa de
+    lo que sucede ``en el driver''. El driver es un programa como |dvips| o
+    |dvipdfm| que toma un archivo |.dvi| como entrada y genera un archivo |.ps|
+    o |.pdf|. (El programa |pdftex| también cuenta como un driver aunque no
+    tome un archivo |.dvi| como entrada. No es de importancia.) Cada driver
+    tiene su propio sintaxis para la creación de figuras, lo que causa dolores
+    de cabeza a cualquiera que quiera crear gráficos de forma portable. La capa
+    del sistema de \pgfname\ es la que ``abstrae'' estas diferencias. Por
+    ejemplo, el comando del sistema |\pgfsys@lineto{10pt}{10pt}| extiende el
+    path activo a la coordenada $(10\mathrm{pt},10\mathrm{pt})$ del
+    |{pgfpicture}| en ejecución. Dependiendo de si |divps|, |dvipdfm| o |pdftex|
+    es usado para procesar el documento, el comando del sistema será convertido
+    a distintos comandos |\special|. La capa del sistema es lo más minimalista
+    posible, ya que cada comando hace que sea más laborioso portar \pgfname\ a
+    un nuevo driver.
 
-        As a user, you will not use the system layer directly.
-    \item[Basic layer:] The basic layer provides a set of basic commands that
-        allow you to produce complex graphics in a much easier manner than by
-        using the system layer directly. For example, the system layer provides
-        no commands for creating circles since circles can be composed from the
-        more basic Bézier curves (well, almost). However, as a user you will
-        want to have a simple command to create circles (at least I do) instead
-        of having to write down half a page of Bézier curve support
-        coordinates. Thus, the basic layer provides a command |\pgfpathcircle|
-        that generates the necessary curve coordinates for you.
+    Como usuario, no utilizarás la capa del sistema directamente.
 
-        The basic layer consists of a \emph{core}, which consists of several
-        interdependent packages that can only be loaded \emph{en bloc}, and
-        additional \emph{modules} that extend the core by more
-        special-purpose commands like node management or a plotting
-        interface. For instance, the \textsc{beamer} package uses only the
-        core and not, say, the |shapes| modules.
+    \item[Capa Básica:] La capa básica proporciona un conjunto de comandos
+    básicos que permiten producir gráficos complejos de manera mucho más
+    sencilla que usando directamente la capa del sistema. Por ejemplo, la capa
+    del sistema no proporciona comandos para crear círculos, dado que los
+    círculos pueden ser creados mediante las, más básicas, curvas de Bézier
+    (bueno, casi). Sin embargo, como usuario querrás tener un comando simple 
+    para crear círculos (al menos yo sí) en vez de tener que escribir media
+    página de coordenadas de control para la curva de Bézier. De esta manera, la
+    capa básica proporciona un comando |\pgfpathcircle| que genera por ti las
+    coordenadas necesarias para la curva. 
+
+    La capa básica consiste de un \emph{núcleo}, el cual consiste de varios
+    paquetes interdependientes que solo pueden ser cargados \emph{en bloc}, y de
+    \emph{módulos} adicionales que extienden el núcleo mediante comandos de
+    propósitos más específicos, como los del manejo de los nodos o una interfaz
+    para graficar. Por ejemplo, el paquete \textsc{beamer} solo usa el núcleo y
+    no, por ejemplo, el módulo |shapes|.
+
 \end{description}
 
-In theory, \tikzname\ itself is just one of several possible ``frontends''.
-which are sets of commands or a special syntax that makes using the basic layer
-easier. A problem with directly using the basic layer is that code written for
-this layer is often too ``verbose''. For example, to draw a simple triangle,
-you may need as many as five commands when using the basic layer: One for
-beginning a path at the first corner of the triangle, one for extending the
-path to the second corner, one for going to the third, one for closing the
-path, and one for actually painting the triangle (as opposed to filling it).
-With the \tikzname\ frontend all this boils down to a single simple
-\textsc{metafont}-like command:
+En teoría, \tikzname\ por si mismo es solo uno de los muchos ``frontends''
+posibles, los cuales son un conjunto de comandos o una sintaxis especial que
+hacen más sencillo usar la capa básica. Un problema de usar la capa básica
+directamente es que el código escrito por esta capa suele ser demasiado
+``verboso''. Por ejemplo, para dibujar un simple triángulo, podrías necesitar
+hasta cinco comandos cuando usad la capa básica: Uno para iniciar el path en el
+primer vértice del triángulo, uno para extender el path hasta el segundo
+vértice, uno para ir al tercero, uno para cerrar el path, y uno para realmente
+dibujar el triángulo (en lugar de rellenarlo). Con el frontend \tikzname\  todo
+esto se reduce a un único y sencillo comando similar a \textsc{metafont}:
 %
 \begin{verbatim}
 \draw (0,0) -- (1,0) -- (1,1) -- cycle;
 \end{verbatim}
 
-In practice, \tikzname\ is the only ``serious'' frontend for \pgfname. It gives
-you access to all features of \pgfname, but it is intended to be easy to use.
-The syntax is a mixture of \textsc{metafont} and \textsc{pstricks} and some
-ideas of myself. There are other frontends besides \tikzname, but they are intended
-more as ``technology studies'' and less as serious alternatives to
-\tikzname. In particular, the |pgfpict2e| frontend   reimplements the standard
-\LaTeX\ |{picture}|  environment and commands like |\line| or |\vector| using
-the \pgfname\ basic layer. This layer is not really ``necessary'' since the
-|pict2e.sty| package does at least as good a job at reimplementing the
-|{picture}| environment. Rather, the idea behind this package is to have a
-simple demonstration of how a frontend can be implemented.
+En la práctica, \tikzname\ es el único frontend ``serio'' para \pgfname. Este te
+permite acceder a todas las características de \pgfname, pero con un diseño
+fácil de usar. La sintaxis es una mezcla de \textsc{metafont}, \textsc{pstricks}
+y algunas de mis propias ideas. Existe otros frontends además de \tikzname, pero
+estos están pensados más como ``estudios de tecnología'' y menos como
+alternativas serias de \tikzname. En particular, el frontend |pgfpict2e|
+reimplementa el entorno estándar de \LaTeX\ |{picture}| y los comandos como
+|\line| o |\vector| usando la capa básica de \pgfname. Esta capa no es realmente
+necesaria, ya que el paquete |pict2e.sty| hace un trabajo igual de bueno en
+reimplementar el entorno |{picture}|. Más bien, la idea detrás de este paquete
+es tener una demostración simple de como un frontend puede ser implementado.
 
-Since most users will only use \tikzname\ and almost no one will use the system
-layer directly, this manual is mainly about \tikzname\ in the first parts; the
-basic layer and the system layer are explained at the end.
+Dado que la mayoría de los usuarios solo usarán \tikzname\ y que casi nadie
+usará la capa del sistema directamente, este manual es principalmente acerca de
+\tikzname\ en las primeras partes; la capa básica y la capa del sistema serán
+explicados al final.
 
+\subsection{Comparación con Otros Paquetes Gráficos}
 
-\subsection{Comparison with Other Graphics Packages}
-
-\tikzname\ is not the only graphics package for \TeX. In the following, I try
-to give a reasonably fair comparison of \tikzname\ and other packages.
+\tikzname\ no es el único paquete gráfico para \TeX. A continuación, trataré de
+dar una razonablemente comparación justa de \tikzname\ y otros paquetes gráficos
 %
+
+
+
 \begin{enumerate}
     \item The standard \LaTeX\ |{picture}| environment allows you to create
         simple graphics, but little more. This is certainly not due to a lack

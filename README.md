@@ -7,6 +7,13 @@ probablemente haya) errores de traducción. Haré todo lo posible por que eso no
 sea así. También, por motivos de tropicalización, es posible que algunos
 términos o frases no estén traducidos de manera literal.
 
+En específico, algunos términos de programación no los traduciré. El motivo es
+que, usualmente, este tipo palabras es más común escuchar (o ver) el anglicismo
+que su término original. Otro motivo es que, dado que no soy un traductor 
+profesional, no tengo ni idea de cual sería la mejor forma de traducir estos
+términos. Así que consideré que es mejor dejar las palabras tal cuales como
+están.
+
 Es un proyecto personal, por lo que el resultado está en proceso y puede que
 nunca esté acabado (esperemos que no).
 
@@ -15,7 +22,7 @@ nunca esté acabado (esperemos que no).
 ![Test suite](https://github.com/pgf-tikz/pgf/actions/workflows/check.yml/badge.svg?branch=master)
 
 PGF es un paquete de macros de TeX para generar gráficos. Es independiente de la
-plataforma y el formato y funciona con los controladores de backend de TeX más 
+plataforma y el formato y funciona con los drivers de backend de TeX más 
 importantes, incluyendo `pdftex` y `dvips`. Además, viene con una capa de
 sintaxis user-friendly llamada Ti*k*Z.
 
