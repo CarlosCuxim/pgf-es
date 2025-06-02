@@ -46,7 +46,7 @@ Ahora que sabemos qué es \tikzname\ ¿que hay acerca de ``\pgfname''? Como se
 mencionó anteriormente,\tikzname\ empezó como un proyecto para implementar
 macros de gráficos de \TeX que pudieran ser usados por pdf\LaTeX y también con
 el clásico \LaTeX (basado en PostScript). En otras palabras, lo que quería era
-implementar un ``portable graphics format'' (sistema de gráficos portable) para
+implementar un ``formato de gráficos portable'' (portable graphics format) para
 \TeX\ -- de ahí el nombre de \pgfname. Esos primeros macros están aún ahí y
 forman la ``capa básica'' del sistema descrito en este manual, pero actualmente
 la mayoría de la interacción que un autor tendrá será con \tikzname\ -- el cual
@@ -133,41 +133,43 @@ explicados al final.
 \tikzname\ no es el único paquete gráfico para \TeX. A continuación, trataré de
 dar una razonablemente comparación justa de \tikzname\ y otros paquetes gráficos
 %
-
-
-
 \begin{enumerate}
-    \item The standard \LaTeX\ |{picture}| environment allows you to create
-        simple graphics, but little more. This is certainly not due to a lack
-        of knowledge or imagination on the part of \LaTeX's designer(s).
-        Rather, this is the price paid for the |{picture}| environment's
-        portability: It works together with all backend drivers.
-    \item The |pstricks| package is certainly powerful enough to create any
-        conceivable kind of graphic, but it is not really portable. Most
-        importantly, it does not work with |pdftex| nor with any other driver
-        that produces anything but PostScript code.
+    \item El entorno |{picture}| estándar de \LaTeX\ te permite crear gráficos
+    simples, pero poco más. Esto ciertamente no es debido a una falta de
+    conocimiento o imaginación por parte de los diseñadores de \LaTeX. Más bien,
+    este es el precio a pagar por la portabilidad del entorno |{picture}|: este
+    funciona con todos los drivers de backend.
+    
+    \item El paquete |{pstricks}| ciertamente es lo suficientemente potente para
+    crear cualquier tipo de gráfico concebible, pero no es realmente portable.
+    Más importante, este no funciona con |pdftex| ni con cualquier otro driver
+    que produzca algo distinto a código PostScript.
 
-        Compared to \tikzname, |pstricks| has a similar support base. There
-        are many nice extra packages for special purpose situations that have
-        been contributed by users over the last decade. The \tikzname\ syntax
-        is more consistent than the |pstricks| syntax as \tikzname\ was
-        developed ``in a more centralized manner'' and also ``with the
-        shortcomings on |pstricks| in mind''.
-    \item The |xypic| package is an older package for creating graphics.
-        However, it is more difficult to use and to learn because the syntax
-        and the documentation are a bit cryptic.
-    \item The |dratex| package is a small graphic package for creating a
-        graphics. Compared to the other package, including \tikzname, it is
-        very small, which may or may not be an advantage.
-    \item The |metapost| program is a powerful alternative to \tikzname. It
-        used to be an external program, which entailed a bunch of problems,
-        but in Lua\TeX\ it is now built in. An obstacle with |metapost| is
-        the inclusion of labels. This is \emph{much} easier to achieve using
-        \pgfname.
-    \item The |xfig| program is an important alternative to \tikzname\ for
-        users who do not wish to ``program'' their graphics as is necessary
-        with \tikzname\ and the other packages above. There is a conversion
-        program that will convert |xfig| graphics to \tikzname.
+    Comparado con \tikzname, |pstricks| tiene una base de apoyo similar. Hay
+    bastantes buenos paquetes extra para situaciones especiales que han sido
+    contribuidos por los usuarios durante la última década. La sintaxis de
+    \tikzname\ es más consistente que la de |pstricks|, dado que \tikzname ha
+    sido desarrollado ``de forma más centralizada'' y también ``teniendo en
+    cuente las deficiencias de |pstricks|''.
+
+    \item El paquete |xypic| es un paquete antiguo para crear gráficos. Sin
+    embargo, es más difícil de usar y de aprender dado que la sintaxis y la
+    documentación son algo crípticas.
+
+    \item El paquete |dratex| es un pequeño paquete para crear gráficos.
+    Comparado con los otros paquetes, incluyendo \tikzname, es muy pequeño, lo
+    que podría o no ser una ventaja.
+
+    \item El programa |metapost| es una poderosa alternativa a \tikzname. Solía
+    ser un programa externo, lo cual traía consigo un montón de problemas, pero
+    con Lua\TeX\ está ahora integrado. Un obstáculo con |metapost| es la
+    inclusión de etiquetas. Esto es \emph{mucho más} sencillo de lograr usando
+    \pgfname.
+
+    \item El programa |xfig| es una alternativa importante a \tikzname\ para los
+    usuarios que no desean ``programar'' sus gráficos, dado que esto es
+    necesario con \tikzname\ y los otros paquetes anteriores. Hay un programa
+    de conversión que convierte gráficos de |xfig| a \tikzname.
 \end{enumerate}
 
 
